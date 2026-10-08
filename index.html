@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Nova X</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: #05080c;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            padding-bottom: 100px;
+        }
+
+        .app {
+            max-width: 600px;
+            margin: auto;
+            padding: 18px;
+        }
+
+        /* ENCABEZADO */
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .logo {
+            font-size: 30px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: #19d9b5;
+        }
+
+        .subtitle {
+            color: #8292aa;
+            font-size: 13px;
+            margin-top: 3px;
+        }
+
+        .icons {
+            font-size: 25px;
+        }
+
+        /* TARJETAS */
+
+        .card {
+            background: #0b1118;
+            border: 1px solid #172735;
+            border-radius: 20px;
+            padding: 22px;
+            margin-bottom: 18px;
+        }
+
+        .card-title {
+            color: #9eafc7;
+            font-size: 16px;
+            margin-bottom: 12px;
+        }
+
+        /* DEPÓSITO */
+
+        .deposit {
+            font-size: 38px;
+            font-weight: bold;
+        }
+
+        .usdt {
+            color: #19d9b5;
+            font-size: 22px;
+        }
+
+        .description {
+            color: #8191a8;
+            line-height: 1.5;
+            margin-top: 10px;
+        }
+
+        /* GENERACIÓN */
+
+        .online {
+            color: #19d9b5;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .generation {
+            font-size: 28px;
+            color: #19d9b5;
+            font-weight: bold;
+            margin: 12px 0;
+        }
+
+        .small {
+            color: #8798af;
+            font-size: 14px;
+        }
+
+        /* ESTADÍSTICAS */
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 18px;
+        }
+
+        .stat {
+            background: #080e15;
+            border: 1px solid #172735;
+            border-radius: 15px;
+            padding: 13px 8px;
+            text-align: center;
+        }
+
+        .stat-title {
+            color: #7e90a8;
+            font-size: 12px;
+            margin-bottom: 8px;
+        }
+
+        .stat-value {
+            color: #19d9b5;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        /* BOTÓN */
+
+        .withdraw-button {
+            width: 100%;
+            border: none;
+            border-radius: 15px;
+            padding: 17px;
+            margin-top: 20px;
+
+            background: #19aF9a;
+            color: white;
+
+            font-size: 17px;
+            font-weight: bold;
+        }
+
+        .withdraw-button:active {
+            transform: scale(0.98);
+        }
+
+        .info {
+            color: #7e90a8;
+            font-size: 12px;
+            line-height: 1.5;
+            margin-top: 13px;
+        }
+
+        /* RESUMEN */
+
+        .summary {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+        }
+
+        .summary-item {
+            flex: 1;
+        }
+
+        .summary-title {
+            color: #7e90a8;
+            font-size: 12px;
+        }
+
+        .summary-value {
+            margin-top: 7px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .reward {
+            color: #19d9b5;
+        }
+
+        /* MENÚ */
+
+        .bottom-menu {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+
+            max-width: 600px;
+            margin: auto;
+
+            height: 82px;
+
+            background: #080d14;
+            border-top: 1px solid #172735;
+
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+
+            align-items: center;
+            padding: 5px;
+        }
+
+        .menu-item {
+            text-align: center;
+            color: #71829a;
+            font-size: 11px;
+            padding: 8px 3px;
+        }
+
+        .menu-icon {
+            font-size: 21px;
+            margin-bottom: 4px;
+        }
+
+        /* HOME RESALTADO */
+
+        .menu-item.active {
+            color: #19d9b5;
+
+            background: #102a2b;
+
+            border: 1px solid #19d9b5;
+
+            border-radius: 17px;
+
+            transform: translateY(-9px);
+
+            box-shadow:
+                0 0 18px rgba(25, 217, 181, 0.25);
+        }
+
+        /* MÓVIL */
+
+        @media (max-width: 400px) {
+
+            .app {
+                padding: 14px;
+            }
+
+            .deposit {
+                font-size: 32px;
+            }
+
+            .generation {
+                font-size: 23px;
+            }
+
+            .stat-value {
+                font-size: 12px;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- HEADER -->
+
+    <div class="header">
+
+        <div>
+            <div class="logo">
+                Nova<span>X</span>
+            </div>
+
+            <div class="subtitle">
+                Tu futuro, en tus manos
+            </div>
+        </div>
+
+        <div class="icons">
+            🔔　👤
+        </div>
+
+    </div>
+
+
+    <!-- DEPÓSITO -->
+
+    <div class="card">
+
+        <div class="card-title">
+            🏦 Depósito actual
+        </div>
+
+        <div class="deposit">
+            <span id="deposit">3.00</span>
+            <span class="usdt">USDT</span>
+        </div>
+
+        <div class="description">
+            Es la cantidad que tienes en el depósito
+            y sobre la que se calcula tu generación.
+        </div>
+
+    </div>
+
+
+    <!-- GENERACIÓN -->
+
+    <div class="card">
+
+        <div class="card-title">
+            ⚡ Generación en tiempo real
+        </div>
+
+        <div class="online">
+            ● En línea
+        </div>
+
+        <div class="small">
+            Generando ahora
+        </div>
+
+        <div class="generation">
+            <span id="perSecond">0.000003</span>
+            USDT/s
+        </div>
+
+        <div class="stats">
+
+            <div class="stat">
+
+                <div class="stat-title">
+                    Generado en 1 hora
+                </div>
+
+                <div class="stat-value" id="hour">
+                    0.010800
+                </div>
+
+            </div>
+
+
+            <div class="stat">
+
+                <div class="stat-title">
+                    Generado hoy
+                </div>
+
+                <div class="stat-value" id="day">
+                    0.072000
+                </div>
+
+            </div>
+
+
+            <div class="stat">
+
+                <div class="stat-title">
+                    Generado en 1 mes
+                </div>
+
+                <div class="stat-value" id="month">
+                    2.160000
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <button
+            class="withdraw-button"
+            onclick="addReward()">
+
+            ↔ Retirar al depósito
+
+        </button>
+
+
+        <div class="info">
+            La recompensa mostrada es pendiente.
+            Al retirarla al depósito, se suma al saldo
+            utilizado para calcular la generación futura.
+        </div>
+
+    </div>
+
+
+    <!-- RESUMEN -->
+
+    <div class="card">
+
+        <div class="card-title">
+            🪙 Resumen
+        </div>
+
+        <div class="summary">
+
+            <div class="summary-item">
+
+                <div class="summary-title">
+                    Depósito
+                </div>
+
+                <div class="summary-value">
+                    <span id="summaryDeposit">3.00</span> USDT
+                </div>
+
+            </div>
+
+
+            <div class="summary-item">
+
+                <div class="summary-title">
+                    Recompensa pendiente
+                </div>
+
+                <div class="summary-value reward">
+
+                    <span id="reward">
+                        0.000000
+                    </span>
+
+                    USDT
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- MENÚ INFERIOR -->
+
+<div class="bottom-menu">
+
+    <div class="menu-item">
+
+        <div class="menu-icon">
+            📋
+        </div>
+
+        Tareas
+
+    </div>
+
+
+    <div class="menu-item">
+
+        <div class="menu-icon">
+            🏦
+        </div>
+
+        Banco
+
+    </div>
+
+
+    <div class="menu-item active">
+
+        <div class="menu-icon">
+            🏠
+        </div>
+
+        Home
+
+    </div>
+
+
+    <div class="menu-item">
+
+        <div class="menu-icon">
+            👤
+        </div>
+
+        Perfil
+
+    </div>
+
+
+    <div class="menu-item">
+
+        <div class="menu-icon">
+            👥
+        </div>
+
+        Amigos
+
+    </div>
+
+</div>
+
+
+<script>
+
+    /*
+       PROTOTIPO DE PRUEBA
+
+       El depósito es independiente
+       de la recompensa pendiente.
+    */
+
+    let deposit = 3.00;
+
+    let reward = 0;
+
+    /*
+       Tasa ficticia para probar
+       el funcionamiento del contador.
+    */
+
+    let perSecond = 0.000003;
+
+
+    function updateScreen() {
+
+        /*
+           Generación acumulada pendiente
+        */
+
+        reward += perSecond;
+
+
+        /*
+           Actualizamos recompensa
+        */
+
+        document.getElementById("reward").textContent =
+            reward.toFixed(6);
+
+
+        /*
+           Cálculos visuales
+        */
+
+        document.getElementById("hour").textContent =
+            (perSecond * 3600).toFixed(6);
+
+
+        document.getElementById("day").textContent =
+            (perSecond * 86400).toFixed(6);
+
+
+        document.getElementById("month").textContent =
+            (perSecond * 2592000).toFixed(6);
+
+    }
+
+
+    /*
+       Retirar recompensa al depósito
+    */
+
+    function addReward() {
+
+        if (reward <= 0) {
+            return;
+        }
+
+        deposit += reward;
+
+        reward = 0;
+
+        document.getElementById("deposit").textContent =
+            deposit.toFixed(6);
+
+        document.getElementById("summaryDeposit").textContent =
+            deposit.toFixed(6);
+
+        document.getElementById("reward").textContent =
+            "0.000000";
+
+    }
+
+
+    /*
+       Actualizar cada segundo
+    */
+
+    setInterval(updateScreen, 1000);
+
+</script>
+
+</body>
+</html>
