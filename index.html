@@ -1,789 +1,566 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#02080d">
-
-<title>NovaX | Tu futuro, en tus manos</title>
-
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#07111b">
+<title>Nova X</title>
 <style>
-:root {
-  --bg: #02070c;
-  --panel: #06131c;
-  --panel2: #081923;
-  --border: #07545b;
-  --cyan: #00f5d4;
-  --cyan2: #00cbb8;
-  --text: #f4f8ff;
-  --muted: #83a9d2;
-  --blue: #168bff;
-  --purple: #904cff;
+:root{
+--bg:#050b12;
+--panel:#0b1722;
+--line:#183344;
+--cyan:#32e6d0;
+--blue:#4ab8ff;
+--text:#eff8fc;
+--muted:#91a9b7
 }
-
-* {
-  box-sizing: border-box;
+*{box-sizing:border-box}
+body{
+margin:0;
+background:radial-gradient(ellipse at top,#102635,#07111b 42%,#04080d);
+color:var(--text);
+font-family:system-ui,Arial,sans-serif;
+min-height:100vh
 }
-
-body {
-  margin: 0;
-  background:
-    radial-gradient(ellipse at 50% 0%, #063238 0%, transparent 42%),
-    var(--bg);
-  color: var(--text);
-  font-family: Arial, Helvetica, sans-serif;
-  min-height: 100vh;
-  padding-bottom: 105px;
+button{font:inherit;cursor:pointer}
+.app{
+max-width:480px;
+margin:auto;
+min-height:100vh;
+padding:22px 16px 100px
 }
-
-button {
-  font: inherit;
-  cursor: pointer;
+.top{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:24px
 }
-
-.app {
-  width: 100%;
-  max-width: 600px;
-  margin: auto;
-  padding: 20px 15px;
+.brand{
+display:flex;
+align-items:center;
+gap:10px;
+font-weight:850;
+font-size:21px
 }
-
-.header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 25px;
-  gap: 10px;
+.logo{
+width:38px;
+height:38px;
+border-radius:13px;
+display:grid;
+place-items:center;
+background:linear-gradient(135deg,var(--cyan),var(--blue));
+color:#041017;
+font-weight:950
 }
-
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+.pill{
+font-size:10px;
+color:var(--cyan);
+border:1px solid #1a5559;
+background:#0a252b;
+padding:7px 9px;
+border-radius:99px
 }
-
-.brand-symbol {
-  font-size: 48px;
-  line-height: 1;
-  font-weight: 900;
-  color: var(--cyan);
-  text-shadow: 0 0 18px #00f5d466;
-  transform: skew(-10deg);
+h1{font-size:26px;margin:0 0 6px}
+.sub{
+margin:0;
+color:var(--muted);
+font-size:13px;
+line-height:1.5
 }
-
-.brand-name {
-  font-size: 34px;
-  font-weight: 800;
-  letter-spacing: -1.5px;
+.card{
+background:linear-gradient(145deg,#102331,#0a151f);
+border:1px solid var(--line);
+border-radius:22px;
+padding:19px;
+margin-top:16px
 }
-
-.brand-name span {
-  color: var(--cyan);
+.growth{
+border-color:#1a4e53;
+background:linear-gradient(145deg,#0c292e,#0a1721)
 }
-
-.tagline {
-  color: var(--muted);
-  font-size: 13px;
-  margin-top: 4px;
+.row{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:12px
 }
-
-.header-actions {
-  display: flex;
-  gap: 9px;
+.label{
+color:var(--muted);
+font-size:11px;
+letter-spacing:.3px
 }
-
-.icon-button {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  border: 1px solid var(--border);
-  background: #071720;
-  color: var(--cyan);
-  font-size: 23px;
+.balance,.pending{
+font-size:29px;
+font-weight:850;
+letter-spacing:-.7px;
+margin:8px 0 3px;
+overflow-wrap:anywhere
 }
-
-.card {
-  position: relative;
-  overflow: hidden;
-  background: linear-gradient(135deg, #081720, #030c13);
-  border: 1px solid var(--border);
-  border-radius: 23px;
-  padding: 22px 20px;
-  margin-bottom: 16px;
-  box-shadow: inset 0 0 22px #00d9c408;
+.pending,.coin{color:var(--cyan)}
+.coin{font-size:13px;font-weight:750}
+.mini{font-size:11px;color:#7993a2;margin-top:7px}
+.bubble{
+width:44px;
+height:44px;
+display:grid;
+place-items:center;
+border:1px solid #1e4b59;
+background:#0b2932;
+border-radius:15px;
+color:var(--cyan);
+font-size:21px;
+flex-shrink:0
+}.progress{
+height:7px;
+border-radius:20px;
+overflow:hidden;
+background:#142733;
+margin-top:13px
 }
-
-.card-title {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  font-size: 19px;
-  font-weight: 700;
+.progress>div{
+height:100%;
+width:0;
+background:linear-gradient(90deg,var(--cyan),var(--blue));
+transition:width .25s
 }
-
-.title-icon {
-  color: var(--cyan);
-  font-size: 30px;
-  text-shadow: 0 0 15px #00f5d466;
+.btn{
+border:0;
+border-radius:13px;
+padding:13px 15px;
+font-weight:800;
+width:100%;
+margin-top:14px;
+background:linear-gradient(100deg,var(--cyan),var(--blue));
+color:#041017
 }
-
-.status {
-  margin-left: auto;
-  background: #003b3a;
-  color: var(--cyan);
-  border: 1px solid #006b66;
-  border-radius: 30px;
-  padding: 7px 11px;
-  font-size: 12px;
-  white-space: nowrap;
+.btn:disabled{
+opacity:.35;
+cursor:not-allowed
 }
-
-.label {
-  margin-top: 21px;
-  color: var(--muted);
-  font-size: 15px;
+.btn.secondary{
+background:#132b39;
+border:1px solid #244556;
+color:var(--text)
 }
-
-.balance {
-  margin-top: 8px;
-  font-size: clamp(27px, 7vw, 39px);
-  font-weight: 800;
-  overflow-wrap: anywhere;
-  letter-spacing: -1px;
+.stats{
+display:grid;
+grid-template-columns:repeat(3,minmax(0,1fr));
+gap:9px;
+margin-top:15px
 }
-
-.coin {
-  color: var(--cyan);
-  font-size: 20px;
-  letter-spacing: 0;
+.stat{
+border:1px solid var(--line);
+background:#0a151f;
+border-radius:16px;
+padding:13px 10px;
+min-width:0
 }
-
-.estimate {
-  margin-top: 12px;
-  color: var(--muted);
-  font-size: 14px;
+.stat strong{
+display:block;
+font-size:14px;
+margin-top:8px;
+overflow-wrap:anywhere
 }
-
-.generation-card {
-  padding-bottom: 21px;
+.stat small{color:var(--muted);font-size:10px}
+.section{display:none}
+.section.active{display:block}
+.nav{
+position:fixed;
+bottom:0;
+left:50%;
+transform:translateX(-50%);
+width:100%;
+max-width:480px;
+display:grid;
+grid-template-columns:repeat(5,minmax(0,1fr));
+padding:10px 7px calc(10px + env(safe-area-inset-bottom));
+background:#07111bf2;
+border-top:1px solid #183344;
+backdrop-filter:blur(15px);
+z-index:10
 }
-
-.generation-head {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+.nav button{
+background:none;
+border:0;
+color:#7894a5;
+font-size:10px;
+padding:5px 0;
+display:flex;
+flex-direction:column;
+align-items:center;
+gap:5px
 }
-
-.generation-head h2 {
-  font-size: 19px;
-  margin: 0;
+.nav button span{font-size:19px}
+.nav button.active{color:var(--cyan)}
+.nav button.home span{
+width:39px;
+height:39px;
+display:grid;
+place-items:center;
+margin-top:-20px;
+border:3px solid #07111b;
+border-radius:14px;
+background:linear-gradient(135deg,var(--cyan),var(--blue));
+color:#041017;
+font-size:20px
 }
-
-.pending-label {
-  color: var(--muted);
-  font-size: 14px;
-  margin-top: 21px;
+.notice{
+border:1px solid #594a27;
+background:#282214;
+color:#e8d4a2;
+border-radius:13px;
+padding:12px;
+font-size:11px;
+line-height:1.5;
+margin-top:17px
 }
-
-.pending-value {
-  color: var(--cyan);
-  font-size: clamp(27px, 7vw, 36px);
-  font-weight: 800;
-  margin-top: 7px;
-  overflow-wrap: anywhere;
-}
-
-.pending-value small {
-  font-size: 17px;
-}
-
-.timer-note {
-  color: var(--muted);
-  font-size: 13px;
-  margin-top: 8px;
-}
-
-.stats {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 9px;
-  margin-bottom: 18px;
-}
-
-.stat-card {
-  min-width: 0;
-  min-height: 155px;
-  padding: 13px 10px;
-  border: 1px solid #075064;
-  border-radius: 20px;
-  background: linear-gradient(150deg, #071822, #030d14);
-}
-
-.stat-icon {
-  display: flex;
-  width: 39px;
-  height: 39px;
-  border-radius: 50%;
-  justify-content: center;
-  align-items: center;
-  font-size: 21px;
-  margin-bottom: 12px;
-  background: #06345d;
-  border: 1px solid #087cff;
-  color: #68c6ff;
-}
-
-.stat-card:nth-child(2) .stat-icon {
-  background: #28135a;
-  border-color: var(--purple);
-  color: #c7a1ff;
-}
-
-.stat-card:nth-child(3) .stat-icon {
-  background: #034d3b;
-  border-color: #00bb82;
-  color: #5dffc0;
-}
-
-.stat-label {
-  font-size: 13px;
-  line-height: 1.4;
-  min-height: 36px;
-  color: var(--text);
-}
-
-.stat-value {
-  margin-top: 9px;
-  font-size: clamp(15px, 3.7vw, 21px);
-  line-height: 1.3;
-  font-weight: 800;
-  color: var(--cyan);
-  overflow-wrap: anywhere;
-}
-
-.stat-value small {
-  font-size: 12px;
-}
-
-.stat-estimate {
-  font-size: 11px;
-  color: var(--muted);
-  margin-top: 7px;
-  overflow-wrap: anywhere;
-}
-
-.primary-button {
-  width: 100%;
-  border: 1px solid #00ffe0;
-  border-radius: 21px;
-  padding: 19px 12px;
-  background: linear-gradient(110deg, #00a999, #00ddbd);
-  color: #ffffff;
-  font-weight: 800;
-  font-size: 18px;
-  box-shadow: 0 0 22px #00e7cb20;
-}
-
-.primary-button:active {
-  transform: scale(0.99);
-}
-
-.helper {
-  display: flex;
-  gap: 9px;
-  align-items: flex-start;
-  color: var(--muted);
-  font-size: 12px;
-  line-height: 1.5;
-  padding: 13px 6px 3px;
-}
-
-.helper span {
-  color: var(--cyan);
-  font-weight: bold;
-}
-
-.task-banner {
-  display: flex;
-  align-items: center;
-  gap: 13px;
-  background: linear-gradient(120deg, #071a23, #041019);
-  border: 1px solid #075b67;
-  border-radius: 18px;
-  padding: 16px 13px;
-  margin-top: 20px;
-}
-
-.gift-icon {
-  display: flex;
-  flex: 0 0 48px;
-  height: 48px;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  background: #064047;
-  color: var(--cyan);
-  font-size: 25px;
-}
-
-.task-text {
-  flex: 1;
-  min-width: 0;
-}
-
-.task-text strong {
-  font-size: 14px;
-  line-height: 1.4;
-}
-
-.task-text p {
-  color: var(--muted);
-  font-size: 12px;
-  line-height: 1.5;
-  margin: 6px 0 0;
-}
-
-.arrow {
-  color: var(--muted);
-  font-size: 28px;
-}
-
-.bottom-nav {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 10;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  background: rgba(3, 12, 20, 0.97);
-  border-top: 1px solid #07545b;
-  padding: 9px 5px max(12px, env(safe-area-inset-bottom));
-  backdrop-filter: blur(16px);
-}
-
-.nav-item {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 5px;
-  padding: 9px 2px;
-  color: var(--muted);
-  background: transparent;
-  border: 0;
-  border-radius: 17px;
-  font-size: 11px;
-}
-
-.nav-icon {
-  font-size: 23px;
-}
-
-.nav-item.active {
-  color: var(--cyan);
-  background: #06302e;
-  border: 1px solid #00a99d;
-  box-shadow: 0 0 18px #00e7cb20;
-}
-
-.notice {
-  position: fixed;
-  top: 15px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: calc(100% - 30px);
-  max-width: 450px;
-  padding: 14px;
-  background: #10242c;
-  border: 1px solid var(--cyan);
-  border-radius: 12px;
-  color: white;
-  font-size: 14px;
-  z-index: 30;
-  display: none;
-}
-
-@media (min-width: 500px) {
-  .app {
-    padding: 28px 22px;
-  }
-
-  .card {
-    padding: 26px;
-  }
-
-  .stat-card {
-    padding: 16px;
-  }
-}
-</style>
+.field{
+width:100%;
+background:#06111a;
+color:var(--text);
+border:1px solid #244454;
+padding:13px;
+border-radius:12px;
+margin-top:10px;
+outline:none
+}</style>
 </head>
-
 <body>
+<div class="app">
+<header class="top">
+<div class="brand">
+<div class="logo">N</div>
+<div>NOVA X</div>
+</div>
+<div class="pill">● SISTEMA DE PRUEBA</div>
+</header>
 
-<div id="notice" class="notice"></div>
+<section id="home" class="section active">
+<h1>Tu panel</h1>
+<p class="sub">Controla tu depósito y consulta la generación acumulada.</p>
 
-<main class="app">
+<div class="card">
+<div class="row">
+<div>
+<div class="label">DEPÓSITO ACTUAL</div>
+<div class="balance" id="deposit">0.000000</div>
+<div class="coin">NovaCoin (NC)</div>
+</div>
+<div class="bubble">◈</div>
+</div>
+<div class="mini">Saldo de prueba; no representa fondos reales.</div>
+</div>
 
-  <header class="header">
-    <div class="brand">
-      <div class="brand-symbol">N</div>
-      <div>
-        <div class="brand-name">Nova<span>X</span></div>
-        <div class="tagline">Tu futuro, en tus manos</div>
-      </div>
-    </div>
+<div class="card growth">
+<div class="row">
+<div>
+<div class="label">GENERACIÓN PENDIENTE</div>
+<div class="pending" id="pending">0.000000</div>
+<div class="coin">NovaCoin (NC)</div>
+</div>
+<div class="bubble">↗</div>
+</div>
+<div class="row" style="margin-top:14px">
+<span class="label">Progreso hacia 0.001 NC</span>
+<strong id="progressText" style="font-size:12px">0%</strong>
+</div>
+<div class="progress"><div id="progressBar"></div></div>
+<button class="btn" id="transferBtn" disabled>Retirar al depósito</button>
+<div class="mini">La generación pendiente solo se suma al depósito cuando haces la transferencia interna.</div>
+</div>
 
-    <div class="header-actions">
-      <button class="icon-button" aria-label="Notificaciones"
-        onclick="mostrarAviso('Las notificaciones estarán disponibles próximamente.')">♧</button>
-      <button class="icon-button" aria-label="Perfil"
-        onclick="mostrarAviso('El perfil se añadirá en la siguiente fase.')">♙</button>
-    </div>
-  </header>
+<div class="stats">
+<div class="stat">
+<small>En 1 hora</small>
+<strong id="hourStat">0 NC</strong>
+</div>
+<div class="stat">
+<small>En 1 día</small>
+<strong id="dayStat">0 NC</strong>
+</div>
+<div class="stat">
+<small>En 30 días</small>
+<strong id="monthStat">0 NC</strong>
+</div>
+</div>
 
-  <!-- DEPÓSITO ACTUAL -->
+<div class="notice">
+<strong>Modo de prueba.</strong> Las cifras se calculan con las reglas configuradas en este prototipo. No son ganancias garantizadas ni movimientos de dinero real.
+</div>
 
-  <section class="card">
-    <div class="card-title">
-      <span class="title-icon">▣</span>
-      <span>Depósito actual</span>
-      <span class="status">● Activo</span>
-    </div>
+<div class="card">
+<h3 style="margin:0 0 7px">Herramientas de prueba</h3>
+<p class="sub">Puedes simular un depósito para comprobar cómo funciona el panel.</p>
+<label class="label" for="testAmount">Cantidad simulada (NC)</label>
+<input class="field" id="testAmount" type="number" min="0.001" step="0.001" value="3">
+<button class="btn secondary" id="addTestBtn">Añadir depósito de prueba</button>
+<button class="btn secondary" id="resetBtn">Reiniciar simulación</button>
+</div>
+</section><section id="friends" class="section">
+<h1>Amigos</h1>
+<p class="sub">Invita a otras personas a conocer Nova X.</p>
+<div class="card">
+<div class="bubble">♧</div>
+<h3>Tu comunidad</h3>
+<p class="sub">El sistema de referidos real todavía no está conectado.</p>
+<button class="btn secondary" id="shareBtn">Compartir Nova X</button>
+</div>
+</section>
 
-    <div class="balance">
-      <span id="deposit">0.000000</span>
-      <span class="coin">NovaCoin</span>
-    </div>
+<section id="bank" class="section">
+<h1>Banco</h1>
+<p class="sub">Zona de depósitos y retiros externos.</p>
+<div class="card">
+<div class="bubble">▤</div>
+<h3>Saldo de prueba</h3>
+<p class="sub">Los retiros reales requieren un servidor seguro, validación y aprobación administrativa.</p>
+<label class="label" for="wallet">Dirección de la cartera USDT</label>
+<input class="field" id="wallet" type="text" placeholder="Dirección de tu cartera">
+<label class="label" for="withdrawAmount">Cantidad solicitada (USDT)</label>
+<input class="field" id="withdrawAmount" type="number" min="0" step="0.01" placeholder="0.00">
+<button class="btn secondary" id="withdrawBtn">Probar solicitud de retiro</button>
+<p id="withdrawMessage" class="mini" aria-live="polite"></p>
+</div>
+</section>
 
-    <div class="estimate">
-      Saldo de demostración · Valor de referencia: 1 NovaCoin ≈ 1 USDT
-    </div>
-  </section>
+<section id="tasks" class="section">
+<h1>Tareas</h1>
+<p class="sub">Consulta las tareas disponibles en el prototipo.</p>
+<div class="card">
+<div class="bubble">✓</div>
+<h3>Invita a un amigo a Nova X</h3>
+<p class="sub">En la regla de prueba, completar esta tarea aumenta la capacidad de generación mensual en 1 NC. No aumenta el depósito directamente.</p>
+<div class="row" style="margin-top:15px">
+<span class="label">Recompensa de capacidad</span>
+<strong class="coin">+1 NC/mes</strong>
+</div>
+<button class="btn" id="taskBtn">Completar tarea de prueba</button>
+<p id="taskMessage" class="mini" aria-live="polite"></p>
+</div>
+</section>
 
-  <!-- GENERACIÓN EN TIEMPO REAL -->
-
-  <section class="card generation-card">
-    <div class="generation-head">
-      <span class="title-icon">ϟ</span>
-      <h2>Generación en tiempo real</h2>
-      <span class="status">● En línea</span>
-    </div>
-
-    <div class="pending-label">Ganancias pendientes</div>
-
-    <div class="pending-value">
-      <span id="pending">0.000000</span>
-      <small>NovaCoin</small>
-    </div>
-
-    <div class="timer-note">
-      Ganancias acumuladas desde la última incorporación al depósito.
-    </div>
-  </section>
-
-  <!-- ESTIMACIONES -->
-
-  <section class="stats">
-
-    <div class="stat-card">
-      <div class="stat-icon">◷</div>
-      <div class="stat-label">Generas en 1 hora</div>
-      <div class="stat-value">
-        <span id="hour">0.000000</span>
-        <small>NovaCoin</small>
-      </div>
-      <div class="stat-estimate">Estimación</div>
-    </div>
-
-    <div class="stat-card">
-      <div class="stat-icon">▦</div>
-      <div class="stat-label">Generas hoy</div>
-      <div class="stat-value">
-        <span id="day">0.000000</span>
-        <small>NovaCoin</small>
-      </div>
-      <div class="stat-estimate">24 horas</div>
-    </div>
-
-    <div class="stat-card">
-      <div class="stat-icon">↗</div>
-      <div class="stat-label">Generas en 1 mes</div>
-      <div class="stat-value">
-        <span id="month">0.000000</span>
-        <small>NovaCoin</small>
-      </div>
-      <div class="stat-estimate">30 días</div>
-    </div>
-
-  </section>
-
-  <!-- INCORPORAR GANANCIAS -->
-
-  <button class="primary-button" onclick="retirarAlDeposito()">
-    ↻ &nbsp; Retirar al depósito
-  </button>
-
-  <div class="helper">
-    <span>ⓘ</span>
-    <div>
-      Al pulsar el botón, las ganancias pendientes se incorporan
-      al depósito. Esta versión es una simulación local.
-    </div>
-  </div>
-
-  <!-- TARJETA DE TAREAS -->
-
-  <section class="task-banner"
-    onclick="mostrarAviso('Las misiones y las recompensas se implementarán en la fase de Tareas.')">
-
-    <div class="gift-icon">♙</div>
-
-    <div class="task-text">
-      <strong>¡Completa tareas y aumenta tu generación!</strong>
-      <p>Invita a un amigo y descubre las recompensas de NovaX.</p>
-    </div>
-
-    <div class="arrow">›</div>
-  </section>
-
-</main>
-
-<!-- NAVEGACIÓN INFERIOR -->
-
-<nav class="bottom-nav">
-
-  <button class="nav-item"
-    onclick="navegar('Tareas')">
-    <span class="nav-icon">▤</span>
-    <span>Tareas</span>
-  </button>
-
-  <button class="nav-item"
-    onclick="navegar('Banco')">
-    <span class="nav-icon">▥</span>
-    <span>Banco</span>
-  </button>
-
-  <button class="nav-item active"
-    onclick="navegar('Home')">
-    <span class="nav-icon">⌂</span>
-    <span>Home</span>
-  </button>
-
-  <button class="nav-item"
-    onclick="navegar('Perfil')">
-    <span class="nav-icon">♙</span>
-    <span>Perfil</span>
-  </button>
-
-  <button class="nav-item"
-    onclick="navegar('Amigos')">
-    <span class="nav-icon">♧</span>
-    <span>Amigos</span>
-  </button>
-
+<section id="profile" class="section">
+<h1>Perfil</h1>
+<p class="sub">Información local de esta simulación.</p>
+<div class="card">
+<div class="label">CAPACIDAD EXTRA DE GENERACIÓN</div>
+<div class="balance" id="bonusDisplay">0 NC/mes</div>
+<p class="sub">Esta cantidad es solo una variable de prueba guardada en este dispositivo.</p>
+</div>
+<div class="notice">
+Esta versión guarda el estado en el navegador del dispositivo. No uses estos datos como saldo real.
+</div>
+</section><nav class="nav" aria-label="Navegación principal">
+<button data-target="tasks"><span>✓</span>Tareas</button>
+<button data-target="bank"><span>▤</span>Banco</button>
+<button class="home active" data-target="home"><span>⌂</span>Home</button>
+<button data-target="profile"><span>◉</span>Perfil</button>
+<button data-target="friends"><span>♧</span>Amigos</button>
 </nav>
+</div>
 
 <script>
-/*
-  NOVAX - PROTOTIPO DEL HOME
+(function(){
+"use strict";
 
-  Este código simula el funcionamiento en el navegador.
-  No procesa depósitos ni retiros reales.
+const KEY="novax_home_prototipo_v2";
+const MIN_TRANSFER=0.001;
+const DAILY_RATE=0.5/30;
+const SECOND_RATE=DAILY_RATE/86400;
 
-  Regla de simulación:
-  - Objetivo mensual del depósito: saldo x 1.5.
-  - La ganancia correspondiente al depósito es saldo x 0.5.
-  - Las recompensas mensuales de tareas se suman a esa generación.
-  - Las ganancias pendientes no se capitalizan automáticamente.
-*/
+const $=id=>document.getElementById(id);
 
-const CLAVE = "novax_home_prototipo_v1";
-
-const ESTADO_INICIAL = {
-  deposito: 0,
-  pendiente: 0,
-  generacionMensualTareas: 0,
-  ultimaActualizacion: Date.now()
+function freshState(){
+return {
+deposit:0,
+pending:0,
+bonusMonthly:0,
+taskDone:false,
+lastTime:Date.now()
 };
-
-let estado = cargarEstado();
-
-function cargarEstado() {
-  try {
-    const guardado = localStorage.getItem(CLAVE);
-
-    if (guardado) {
-      return {
-        ...ESTADO_INICIAL,
-        ...JSON.parse(guardado)
-      };
-    }
-  } catch (error) {
-    console.warn("No se pudo leer el estado guardado.", error);
-  }
-
-  return { ...ESTADO_INICIAL };
 }
 
-function guardarEstado() {
-  estado.ultimaActualizacion = Date.now();
-
-  try {
-    localStorage.setItem(CLAVE, JSON.stringify(estado));
-  } catch (error) {
-    console.warn("No se pudo guardar el estado.", error);
-  }
+function loadState(){
+try{
+const saved=localStorage.getItem(KEY);
+if(saved){
+const parsed=JSON.parse(saved);
+return {
+...freshState(),
+...parsed,
+deposit:Math.max(0,Number(parsed.deposit)||0),
+pending:Math.max(0,Number(parsed.pending)||0),
+bonusMonthly:Math.max(0,Number(parsed.bonusMonthly)||0),
+lastTime:Number(parsed.lastTime)||Date.now()
+};
+}
+}catch(e){}
+return freshState();
 }
 
-function numero(valor) {
-  return Number(valor).toFixed(6);
+let state=loadState();
+
+function save(){
+try{
+localStorage.setItem(KEY,JSON.stringify(state));
+}catch(e){}
 }
 
-/*
-  La tarjeta mensual muestra la ganancia estimada para 30 días:
-  depósito x 0.5 + generación mensual de tareas.
-
-  La velocidad del depósito permanece constante mientras el saldo
-  no cambie. Las ganancias pendientes no se capitalizan solas.
-*/
-
-function calcularGeneracionMensual() {
-  const gananciaDelDeposito = estado.deposito * 0.5;
-
-  return gananciaDelDeposito +
-    estado.generacionMensualTareas;
-}
-
-function actualizarInterfaz() {
-  const mensual = calcularGeneracionMensual();
-  const diaria = mensual / 30;
-  const horaria = diaria / 24;
-
-  document.getElementById("deposit").textContent =
-    numero(estado.deposito);
-
-  document.getElementById("pending").textContent =
-    numero(estado.pendiente);
-
-  document.getElementById("hour").textContent =
-    numero(horaria);
-
-  document.getElementById("day").textContent =
-    numero(diaria);
-
-  document.getElementById("month").textContent =
-    numero(mensual);
-}
-
-function actualizarContador() {
-  const ahora = Date.now();
-
-  if (!estado.ultimaActualizacion) {
-    estado.ultimaActualizacion = ahora;
-  }
-
-  const segundosTranscurridos = Math.max(
-    0,
-    (ahora - estado.ultimaActualizacion) / 1000
-  );
-
-  const mensual = calcularGeneracionMensual();
-  const generacionPorSegundo = mensual / (30 * 24 * 60 * 60);
-
-  estado.pendiente +=
-    generacionPorSegundo * segundosTranscurridos;
-
-  estado.ultimaActualizacion = ahora;
-
-  guardarEstado();
-  actualizarInterfaz();
-}
-
-function retirarAlDeposito() {
-  const minimo = 0.001;
-
-  if (estado.pendiente < minimo) {
-    mostrarAviso(
-      "Necesitas acumular al menos 0.001 NovaCoin para usar esta función."
-    );
-    return;
-  }
-
-  const cantidad = estado.pendiente;
-
-  estado.deposito += cantidad;
-  estado.pendiente = 0;
-
-  guardarEstado();
-  actualizarInterfaz();
-
-  mostrarAviso(
-    "Simulación completada: " +
-    numero(cantidad) +
-    " NovaCoin añadidos al depósito."
-  );
-}
-
-function mostrarAviso(mensaje) {
-  const caja = document.getElementById("notice");
-
-  caja.textContent = mensaje;
-  caja.style.display = "block";
-
-  clearTimeout(window.avisoTemporizador);
-
-  window.avisoTemporizador = setTimeout(() => {
-    caja.style.display = "none";
-  }, 3500);
-}
-
-function navegar(seccion) {
-  if (seccion !== "Home") {
-    mostrarAviso(
-      seccion + " se implementará en la siguiente fase del proyecto."
-    );
-    return;
-  }
-
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth"
-  });
-}
-
-/*
-  Para probar el Home desde cero, se puede escribir en la consola:
-  reiniciarPrototipo()
-
-  Esto elimina los datos locales de esta simulación.
-*/
-
-function reiniciarPrototipo() {
-  estado = { ...ESTADO_INICIAL };
-  guardarEstado();
-  actualizarInterfaz();
-}
-
-actualizarInterfaz();
-
-/*
-  Actualizamos el contador cada segundo y calculamos el tiempo
-  transcurrido real para que no dependa solo del número de intervalos.
-*/
-
-setInterval(actualizarContador, 1000);
-
-document.addEventListener("visibilitychange", () => {
-  if (!document.hidden) {
-    actualizarContador();
-  }
+function fmt(value){
+return (Number(value)||0).toLocaleString("en-US",{
+minimumFractionDigits:6,
+maximumFractionDigits:6
 });
-</script>
+}
 
+function money(value){
+return fmt(value)+" NC";
+}
+
+function hourlyGeneration(){
+return state.deposit*SECOND_RATE+state.bonusMonthly/30/24;
+}
+
+function dailyGeneration(){
+return state.deposit*DAILY_RATE+state.bonusMonthly/30;
+}
+
+function monthlyGeneration(){
+return state.deposit*0.5+state.bonusMonthly;
+}
+
+function render(){
+$("deposit").textContent=fmt(state.deposit);
+$("pending").textContent=fmt(state.pending);
+$("hourStat").textContent=money(hourlyGeneration());
+$("dayStat").textContent=money(dailyGeneration());
+$("monthStat").textContent=money(monthlyGeneration());
+$("bonusDisplay").textContent=fmt(state.bonusMonthly)+" NC/mes";
+
+const percent=Math.min(100,state.pending/MIN_TRANSFER*100);
+$("progressText").textContent=percent.toFixed(1)+"%";
+$("progressBar").style.width=percent+"%";
+$("transferBtn").disabled=state.pending<MIN_TRANSFER;
+}
+
+function accrue(){
+const now=Date.now();
+const elapsed=Math.max(0,Math.min((now-state.lastTime)/1000,86400));
+if(elapsed>0){
+state.pending+=hourlyGeneration()*elapsed/3600;
+}
+state.lastTime=now;
+save();
+render();
+}
+
+function switchSection(target){
+document.querySelectorAll(".section").forEach(section=>{
+section.classList.toggle("active",section.id===target);
+});
+document.querySelectorAll(".nav button").forEach(button=>{
+button.classList.toggle("active",button.dataset.target===target);
+});
+window.scrollTo({top:0,behavior:"smooth"});
+}
+
+document.querySelectorAll(".nav button").forEach(button=>{
+button.addEventListener("click",()=>{
+switchSection(button.dataset.target);
+});
+});$("transferBtn").addEventListener("click",()=>{
+accrue();
+if(state.pending<MIN_TRANSFER){
+alert("Necesitas al menos 0.001 NC pendientes para transferir.");
+return;
+}
+state.deposit+=state.pending;
+state.pending=0;
+state.lastTime=Date.now();
+save();
+render();
+alert("Transferencia interna de prueba completada.");
+});
+
+$("addTestBtn").addEventListener("click",()=>{
+const amount=Number($("testAmount").value);
+if(!Number.isFinite(amount)||amount<0.001){
+alert("Introduce una cantidad de al menos 0.001 NC.");
+return;
+}
+accrue();
+state.deposit+=amount;
+state.lastTime=Date.now();
+save();
+render();
+alert("Depósito simulado añadido. No se ha movido dinero real.");
+});
+
+$("resetBtn").addEventListener("click",()=>{
+if(!confirm("¿Seguro que quieres reiniciar todos los datos de prueba guardados en este navegador?"))return;
+state=freshState();
+save();
+render();
+alert("Simulación reiniciada.");
+});
+
+$("taskBtn").addEventListener("click",()=>{
+if(state.taskDone){
+$("taskMessage").textContent="Esta tarea de prueba ya se completó.";
+return;
+}
+state.taskDone=true;
+state.bonusMonthly+=1;
+save();
+render();
+$("taskBtn").disabled=true;
+$("taskBtn").textContent="Tarea completada";
+$("taskMessage").textContent="Se añadió +1 NC/mes a la capacidad de generación simulada.";
+});
+
+if(state.taskDone){
+$("taskBtn").disabled=true;
+$("taskBtn").textContent="Tarea completada";
+$("taskMessage").textContent="Esta tarea de prueba ya se completó.";
+}
+
+$("shareBtn").addEventListener("click",async()=>{
+const shareData={
+title:"Nova X",
+text:"Conoce Nova X",
+url:location.href
+};
+try{
+if(navigator.share){
+await navigator.share(shareData);
+}else if(navigator.clipboard){
+await navigator.clipboard.writeText(location.href);
+alert("Enlace copiado.");
+}else{
+prompt("Copia este enlace:",location.href);
+}
+}catch(e){}
+});
+
+$("withdrawBtn").addEventListener("click",()=>{
+const wallet=$("wallet").value.trim();
+const amount=Number($("withdrawAmount").value);
+if(!wallet){
+$("withdrawMessage").textContent="Introduce una dirección de cartera para la prueba.";
+return;
+}
+if(!Number.isFinite(amount)||amount<=0){
+$("withdrawMessage").textContent="Introduce una cantidad válida.";
+return;
+}
+$("withdrawMessage").textContent=
+"Simulación únicamente: no se ha enviado ninguna solicitud real ni se ha transferido dinero.";
+});
+
+render();
+setInterval(accrue,1000);
+})();
+</script>
 </body>
 </html>
