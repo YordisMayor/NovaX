@@ -1,681 +1,789 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Nova X</title>
-
-    <style>
-
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            margin: 0;
-            background: #05080c;
-            color: #ffffff;
-            font-family: Arial, sans-serif;
-            padding-bottom: 100px;
-        }
-
-        .app {
-            max-width: 600px;
-            margin: auto;
-            padding: 18px;
-        }
-
-        /* ENCABEZADO */
-
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 24px;
-        }
-
-        .logo {
-            font-size: 31px;
-            font-weight: bold;
-            letter-spacing: -1px;
-        }
-
-        .logo span {
-            color: #19d9b5;
-        }
-
-        .subtitle {
-            color: #8292aa;
-            font-size: 13px;
-            margin-top: 3px;
-        }
-
-        .header-icons {
-            display: flex;
-            gap: 12px;
-        }
-
-        .header-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            border: 1px solid #263747;
-            background: #0b1118;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 19px;
-        }
-
-        /* TARJETAS */
-
-        .card {
-            background: #0b1118;
-            border: 1px solid #172735;
-            border-radius: 20px;
-            padding: 21px;
-            margin-bottom: 17px;
-        }
-
-        .card-title {
-            color: #a5b5ca;
-            font-size: 16px;
-            margin-bottom: 12px;
-        }
-
-        /* DEPÓSITO */
-
-        .deposit-label {
-            color: #8495ab;
-            font-size: 14px;
-        }
-
-        .deposit {
-            margin-top: 5px;
-            font-size: 38px;
-            font-weight: bold;
-        }
-
-        .usdt {
-            color: #19d9b5;
-            font-size: 22px;
-        }
-
-        .description {
-            color: #7e90a8;
-            line-height: 1.5;
-            margin-top: 10px;
-            font-size: 13px;
-        }
-
-        /* GENERACIÓN */
-
-        .generation-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .online {
-            color: #19d9b5;
-            font-size: 13px;
-        }
-
-        .online-dot {
-            display: inline-block;
-            width: 8px;
-            height: 8px;
-            background: #19d9b5;
-            border-radius: 50%;
-            margin-right: 5px;
-        }
-
-        .generating-label {
-            color: #8192aa;
-            font-size: 13px;
-            margin-top: 17px;
-        }
-
-        .generation {
-            color: #19d9b5;
-            font-size: 28px;
-            font-weight: bold;
-            margin-top: 6px;
-        }
-
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 9px;
-            margin-top: 20px;
-        }
-
-        .stat {
-            background: #080e15;
-            border: 1px solid #172735;
-            border-radius: 15px;
-            padding: 13px 7px;
-            min-height: 82px;
-        }
-
-        .stat-title {
-            color: #7e90a8;
-            font-size: 11px;
-            line-height: 1.3;
-        }
-
-        .stat-value {
-            color: #19d9b5;
-            font-size: 13px;
-            font-weight: bold;
-            margin-top: 8px;
-        }
-
-        /* BOTÓN */
-
-        .deposit-button {
-            width: 100%;
-            border: none;
-            border-radius: 15px;
-            padding: 17px;
-            margin-top: 20px;
-
-            background: #168f83;
-            color: white;
-
-            font-size: 16px;
-            font-weight: bold;
-        }
-
-        .deposit-button:active {
-            transform: scale(0.98);
-        }
-
-        .button-info {
-            color: #71839a;
-            font-size: 11px;
-            line-height: 1.5;
-            margin-top: 12px;
-        }
-
-        /* RESUMEN */
-
-        .summary {
-            display: flex;
-            gap: 15px;
-        }
-
-        .summary-item {
-            flex: 1;
-        }
-
-        .summary-title {
-            color: #7e90a8;
-            font-size: 12px;
-        }
-
-        .summary-value {
-            font-size: 18px;
-            font-weight: bold;
-            margin-top: 7px;
-        }
-
-        .reward {
-            color: #19d9b5;
-        }
-
-        /* MENÚ INFERIOR */
-
-        .bottom-menu {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-
-            height: 82px;
-
-            background: #080d14;
-            border-top: 1px solid #172735;
-
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-
-            align-items: center;
-
-            padding: 5px;
-
-            z-index: 100;
-        }
-
-        .menu-item {
-            height: 64px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-
-            color: #71829a;
-            font-size: 11px;
-
-            border-radius: 17px;
-
-            transition: 0.2s;
-        }
-
-        .menu-icon {
-            font-size: 21px;
-            margin-bottom: 4px;
-        }
-
-        /* HOME CENTRADO Y RESALTADO */
-
-        .menu-item.active {
-            color: #19d9b5;
-
-            background: #102a2b;
-
-            border: 1px solid #19d9b5;
-
-            transform: translateY(-9px);
-
-            box-shadow:
-                0 0 18px rgba(25, 217, 181, 0.25);
-        }
-
-        @media (max-width: 400px) {
-
-            .app {
-                padding: 14px;
-            }
-
-            .deposit {
-                font-size: 32px;
-            }
-
-            .generation {
-                font-size: 23px;
-            }
-
-            .stat-value {
-                font-size: 11px;
-            }
-
-        }
-
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#02080d">
+
+<title>NovaX | Tu futuro, en tus manos</title>
+
+<style>
+:root {
+  --bg: #02070c;
+  --panel: #06131c;
+  --panel2: #081923;
+  --border: #07545b;
+  --cyan: #00f5d4;
+  --cyan2: #00cbb8;
+  --text: #f4f8ff;
+  --muted: #83a9d2;
+  --blue: #168bff;
+  --purple: #904cff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(ellipse at 50% 0%, #063238 0%, transparent 42%),
+    var(--bg);
+  color: var(--text);
+  font-family: Arial, Helvetica, sans-serif;
+  min-height: 100vh;
+  padding-bottom: 105px;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+}
+
+.app {
+  width: 100%;
+  max-width: 600px;
+  margin: auto;
+  padding: 20px 15px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 25px;
+  gap: 10px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.brand-symbol {
+  font-size: 48px;
+  line-height: 1;
+  font-weight: 900;
+  color: var(--cyan);
+  text-shadow: 0 0 18px #00f5d466;
+  transform: skew(-10deg);
+}
+
+.brand-name {
+  font-size: 34px;
+  font-weight: 800;
+  letter-spacing: -1.5px;
+}
+
+.brand-name span {
+  color: var(--cyan);
+}
+
+.tagline {
+  color: var(--muted);
+  font-size: 13px;
+  margin-top: 4px;
+}
+
+.header-actions {
+  display: flex;
+  gap: 9px;
+}
+
+.icon-button {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: #071720;
+  color: var(--cyan);
+  font-size: 23px;
+}
+
+.card {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #081720, #030c13);
+  border: 1px solid var(--border);
+  border-radius: 23px;
+  padding: 22px 20px;
+  margin-bottom: 16px;
+  box-shadow: inset 0 0 22px #00d9c408;
+}
+
+.card-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 19px;
+  font-weight: 700;
+}
+
+.title-icon {
+  color: var(--cyan);
+  font-size: 30px;
+  text-shadow: 0 0 15px #00f5d466;
+}
+
+.status {
+  margin-left: auto;
+  background: #003b3a;
+  color: var(--cyan);
+  border: 1px solid #006b66;
+  border-radius: 30px;
+  padding: 7px 11px;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.label {
+  margin-top: 21px;
+  color: var(--muted);
+  font-size: 15px;
+}
+
+.balance {
+  margin-top: 8px;
+  font-size: clamp(27px, 7vw, 39px);
+  font-weight: 800;
+  overflow-wrap: anywhere;
+  letter-spacing: -1px;
+}
+
+.coin {
+  color: var(--cyan);
+  font-size: 20px;
+  letter-spacing: 0;
+}
+
+.estimate {
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.generation-card {
+  padding-bottom: 21px;
+}
+
+.generation-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.generation-head h2 {
+  font-size: 19px;
+  margin: 0;
+}
+
+.pending-label {
+  color: var(--muted);
+  font-size: 14px;
+  margin-top: 21px;
+}
+
+.pending-value {
+  color: var(--cyan);
+  font-size: clamp(27px, 7vw, 36px);
+  font-weight: 800;
+  margin-top: 7px;
+  overflow-wrap: anywhere;
+}
+
+.pending-value small {
+  font-size: 17px;
+}
+
+.timer-note {
+  color: var(--muted);
+  font-size: 13px;
+  margin-top: 8px;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 9px;
+  margin-bottom: 18px;
+}
+
+.stat-card {
+  min-width: 0;
+  min-height: 155px;
+  padding: 13px 10px;
+  border: 1px solid #075064;
+  border-radius: 20px;
+  background: linear-gradient(150deg, #071822, #030d14);
+}
+
+.stat-icon {
+  display: flex;
+  width: 39px;
+  height: 39px;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  font-size: 21px;
+  margin-bottom: 12px;
+  background: #06345d;
+  border: 1px solid #087cff;
+  color: #68c6ff;
+}
+
+.stat-card:nth-child(2) .stat-icon {
+  background: #28135a;
+  border-color: var(--purple);
+  color: #c7a1ff;
+}
+
+.stat-card:nth-child(3) .stat-icon {
+  background: #034d3b;
+  border-color: #00bb82;
+  color: #5dffc0;
+}
+
+.stat-label {
+  font-size: 13px;
+  line-height: 1.4;
+  min-height: 36px;
+  color: var(--text);
+}
+
+.stat-value {
+  margin-top: 9px;
+  font-size: clamp(15px, 3.7vw, 21px);
+  line-height: 1.3;
+  font-weight: 800;
+  color: var(--cyan);
+  overflow-wrap: anywhere;
+}
+
+.stat-value small {
+  font-size: 12px;
+}
+
+.stat-estimate {
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 7px;
+  overflow-wrap: anywhere;
+}
+
+.primary-button {
+  width: 100%;
+  border: 1px solid #00ffe0;
+  border-radius: 21px;
+  padding: 19px 12px;
+  background: linear-gradient(110deg, #00a999, #00ddbd);
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 18px;
+  box-shadow: 0 0 22px #00e7cb20;
+}
+
+.primary-button:active {
+  transform: scale(0.99);
+}
+
+.helper {
+  display: flex;
+  gap: 9px;
+  align-items: flex-start;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.5;
+  padding: 13px 6px 3px;
+}
+
+.helper span {
+  color: var(--cyan);
+  font-weight: bold;
+}
+
+.task-banner {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  background: linear-gradient(120deg, #071a23, #041019);
+  border: 1px solid #075b67;
+  border-radius: 18px;
+  padding: 16px 13px;
+  margin-top: 20px;
+}
+
+.gift-icon {
+  display: flex;
+  flex: 0 0 48px;
+  height: 48px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #064047;
+  color: var(--cyan);
+  font-size: 25px;
+}
+
+.task-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.task-text strong {
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.task-text p {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.5;
+  margin: 6px 0 0;
+}
+
+.arrow {
+  color: var(--muted);
+  font-size: 28px;
+}
+
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background: rgba(3, 12, 20, 0.97);
+  border-top: 1px solid #07545b;
+  padding: 9px 5px max(12px, env(safe-area-inset-bottom));
+  backdrop-filter: blur(16px);
+}
+
+.nav-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  padding: 9px 2px;
+  color: var(--muted);
+  background: transparent;
+  border: 0;
+  border-radius: 17px;
+  font-size: 11px;
+}
+
+.nav-icon {
+  font-size: 23px;
+}
+
+.nav-item.active {
+  color: var(--cyan);
+  background: #06302e;
+  border: 1px solid #00a99d;
+  box-shadow: 0 0 18px #00e7cb20;
+}
+
+.notice {
+  position: fixed;
+  top: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 30px);
+  max-width: 450px;
+  padding: 14px;
+  background: #10242c;
+  border: 1px solid var(--cyan);
+  border-radius: 12px;
+  color: white;
+  font-size: 14px;
+  z-index: 30;
+  display: none;
+}
+
+@media (min-width: 500px) {
+  .app {
+    padding: 28px 22px;
+  }
+
+  .card {
+    padding: 26px;
+  }
+
+  .stat-card {
+    padding: 16px;
+  }
+}
+</style>
 </head>
 
 <body>
 
-<div class="app">
+<div id="notice" class="notice"></div>
 
-    <!-- ENCABEZADO -->
+<main class="app">
 
-    <div class="header">
-
-        <div>
-
-            <div class="logo">
-                Nova<span>X</span>
-            </div>
-
-            <div class="subtitle">
-                Tu futuro, en tus manos
-            </div>
-
-        </div>
-
-        <div class="header-icons">
-
-            <div class="header-icon">
-                🔔
-            </div>
-
-            <div class="header-icon">
-                👤
-            </div>
-
-        </div>
-
+  <header class="header">
+    <div class="brand">
+      <div class="brand-symbol">N</div>
+      <div>
+        <div class="brand-name">Nova<span>X</span></div>
+        <div class="tagline">Tu futuro, en tus manos</div>
+      </div>
     </div>
 
-
-    <!-- DEPÓSITO -->
-
-    <div class="card">
-
-        <div class="card-title">
-            🏦 Depósito actual
-        </div>
-
-        <div class="deposit-label">
-            Saldo de demostración
-        </div>
-
-        <div class="deposit">
-            <span id="deposit">3.00</span>
-            <span class="usdt">USDT</span>
-        </div>
-
-        <div class="description">
-            Esta cantidad representa el saldo utilizado
-            por el prototipo para mostrar la generación.
-        </div>
-
+    <div class="header-actions">
+      <button class="icon-button" aria-label="Notificaciones"
+        onclick="mostrarAviso('Las notificaciones estarán disponibles próximamente.')">♧</button>
+      <button class="icon-button" aria-label="Perfil"
+        onclick="mostrarAviso('El perfil se añadirá en la siguiente fase.')">♙</button>
     </div>
+  </header>
 
+  <!-- DEPÓSITO ACTUAL -->
 
-    <!-- GENERACIÓN -->
-
-    <div class="card">
-
-        <div class="generation-header">
-
-            <div class="card-title">
-                ⚡ Generación en tiempo real
-            </div>
-
-            <div class="online">
-                <span class="online-dot"></span>
-                En línea
-            </div>
-
-        </div>
-
-        <div class="generating-label">
-            Generando ahora
-        </div>
-
-        <div class="generation">
-            <span id="perSecond">0.000003</span>
-            USDT/s
-        </div>
-
-        <div class="stats">
-
-            <div class="stat">
-
-                <div class="stat-title">
-                    Generado en 1 hora
-                </div>
-
-                <div class="stat-value" id="hour">
-                    0.010800 USDT
-                </div>
-
-            </div>
-
-
-            <div class="stat">
-
-                <div class="stat-title">
-                    Generado hoy
-                </div>
-
-                <div class="stat-value" id="day">
-                    0.072000 USDT
-                </div>
-
-            </div>
-
-
-            <div class="stat">
-
-                <div class="stat-title">
-                    Generado en 1 mes
-                </div>
-
-                <div class="stat-value" id="month">
-                    2.160000 USDT
-                </div>
-
-            </div>
-
-        </div>
-
-        <!-- PARTE 2 CONTINUARÁ AQUÍ -->    <!-- BOTÓN PARA PASAR LA RECOMPENSA AL DEPÓSITO -->
-
-    <button class="deposit-button" onclick="retirarAlDeposito()">
-        ↻ Retirar al depósito
-    </button>
-
-    <div class="button-info">
-        La generación mostrada es una recompensa pendiente.
-        Al retirarla al depósito, se suma al saldo de demostración
-        y la generación futura se calcula sobre el nuevo saldo.
-    </div>
-
-</div>
-
-
-<!-- RESUMEN -->
-
-<div class="card">
-
+  <section class="card">
     <div class="card-title">
-        🪙 Resumen
+      <span class="title-icon">▣</span>
+      <span>Depósito actual</span>
+      <span class="status">● Activo</span>
     </div>
 
-    <div class="summary">
-
-        <div class="summary-item">
-
-            <div class="summary-title">
-                Depósito
-            </div>
-
-            <div class="summary-value">
-                <span id="summaryDeposit">3.00</span> USDT
-            </div>
-
-        </div>
-
-
-        <div class="summary-item">
-
-            <div class="summary-title">
-                Recompensa pendiente
-            </div>
-
-            <div class="summary-value reward">
-                <span id="reward">0.000000</span> USDT
-            </div>
-
-        </div>
-
+    <div class="balance">
+      <span id="deposit">0.000000</span>
+      <span class="coin">NovaCoin</span>
     </div>
 
-</div>
+    <div class="estimate">
+      Saldo de demostración · Valor de referencia: 1 NovaCoin ≈ 1 USDT
+    </div>
+  </section>
 
+  <!-- GENERACIÓN EN TIEMPO REAL -->
 
-</div>
-
-
-<!-- MENÚ INFERIOR -->
-
-<div class="bottom-menu">
-
-    <!-- TAREAS -->
-
-    <div class="menu-item">
-
-        <div class="menu-icon">
-            📋
-        </div>
-
-        Tareas
-
+  <section class="card generation-card">
+    <div class="generation-head">
+      <span class="title-icon">ϟ</span>
+      <h2>Generación en tiempo real</h2>
+      <span class="status">● En línea</span>
     </div>
 
+    <div class="pending-label">Ganancias pendientes</div>
 
-    <!-- BANCO -->
-
-    <div class="menu-item">
-
-        <div class="menu-icon">
-            🏦
-        </div>
-
-        Banco
-
+    <div class="pending-value">
+      <span id="pending">0.000000</span>
+      <small>NovaCoin</small>
     </div>
 
+    <div class="timer-note">
+      Ganancias acumuladas desde la última incorporación al depósito.
+    </div>
+  </section>
 
-    <!-- HOME -->
+  <!-- ESTIMACIONES -->
 
-    <div class="menu-item active">
+  <section class="stats">
 
-        <div class="menu-icon">
-            🏠
-        </div>
-
-        Home
-
+    <div class="stat-card">
+      <div class="stat-icon">◷</div>
+      <div class="stat-label">Generas en 1 hora</div>
+      <div class="stat-value">
+        <span id="hour">0.000000</span>
+        <small>NovaCoin</small>
+      </div>
+      <div class="stat-estimate">Estimación</div>
     </div>
 
-
-    <!-- PERFIL -->
-
-    <div class="menu-item">
-
-        <div class="menu-icon">
-            👤
-        </div>
-
-        Perfil
-
+    <div class="stat-card">
+      <div class="stat-icon">▦</div>
+      <div class="stat-label">Generas hoy</div>
+      <div class="stat-value">
+        <span id="day">0.000000</span>
+        <small>NovaCoin</small>
+      </div>
+      <div class="stat-estimate">24 horas</div>
     </div>
 
-
-    <!-- AMIGOS -->
-
-    <div class="menu-item">
-
-        <div class="menu-icon">
-            👥
-        </div>
-
-        Amigos
-
+    <div class="stat-card">
+      <div class="stat-icon">↗</div>
+      <div class="stat-label">Generas en 1 mes</div>
+      <div class="stat-value">
+        <span id="month">0.000000</span>
+        <small>NovaCoin</small>
+      </div>
+      <div class="stat-estimate">30 días</div>
     </div>
 
-</div>
+  </section>
 
+  <!-- INCORPORAR GANANCIAS -->
+
+  <button class="primary-button" onclick="retirarAlDeposito()">
+    ↻ &nbsp; Retirar al depósito
+  </button>
+
+  <div class="helper">
+    <span>ⓘ</span>
+    <div>
+      Al pulsar el botón, las ganancias pendientes se incorporan
+      al depósito. Esta versión es una simulación local.
+    </div>
+  </div>
+
+  <!-- TARJETA DE TAREAS -->
+
+  <section class="task-banner"
+    onclick="mostrarAviso('Las misiones y las recompensas se implementarán en la fase de Tareas.')">
+
+    <div class="gift-icon">♙</div>
+
+    <div class="task-text">
+      <strong>¡Completa tareas y aumenta tu generación!</strong>
+      <p>Invita a un amigo y descubre las recompensas de NovaX.</p>
+    </div>
+
+    <div class="arrow">›</div>
+  </section>
+
+</main>
+
+<!-- NAVEGACIÓN INFERIOR -->
+
+<nav class="bottom-nav">
+
+  <button class="nav-item"
+    onclick="navegar('Tareas')">
+    <span class="nav-icon">▤</span>
+    <span>Tareas</span>
+  </button>
+
+  <button class="nav-item"
+    onclick="navegar('Banco')">
+    <span class="nav-icon">▥</span>
+    <span>Banco</span>
+  </button>
+
+  <button class="nav-item active"
+    onclick="navegar('Home')">
+    <span class="nav-icon">⌂</span>
+    <span>Home</span>
+  </button>
+
+  <button class="nav-item"
+    onclick="navegar('Perfil')">
+    <span class="nav-icon">♙</span>
+    <span>Perfil</span>
+  </button>
+
+  <button class="nav-item"
+    onclick="navegar('Amigos')">
+    <span class="nav-icon">♧</span>
+    <span>Amigos</span>
+  </button>
+
+</nav>
 
 <script>
+/*
+  NOVAX - PROTOTIPO DEL HOME
 
-    /*
-     * PROTOTIPO DE NOVA X
-     *
-     * Esta versión utiliza valores ficticios.
-     * No maneja USDT real.
-     */
+  Este código simula el funcionamiento en el navegador.
+  No procesa depósitos ni retiros reales.
 
-    let deposit = 3.00;
+  Regla de simulación:
+  - Objetivo mensual del depósito: saldo x 1.5.
+  - La ganancia correspondiente al depósito es saldo x 0.5.
+  - Las recompensas mensuales de tareas se suman a esa generación.
+  - Las ganancias pendientes no se capitalizan automáticamente.
+*/
 
-    let reward = 0;
+const CLAVE = "novax_home_prototipo_v1";
 
-    /*
-     * Tasa ficticia inicial.
-     *
-     * Más adelante la reemplazaremos
-     * por la lógica que decidamos.
-     */
+const ESTADO_INICIAL = {
+  deposito: 0,
+  pendiente: 0,
+  generacionMensualTareas: 0,
+  ultimaActualizacion: Date.now()
+};
 
-    let perSecond = 0.000003;
+let estado = cargarEstado();
 
+function cargarEstado() {
+  try {
+    const guardado = localStorage.getItem(CLAVE);
 
-    /*
-     * Actualiza la generación.
-     */
-
-    function actualizarGeneracion() {
-
-        /*
-         * La recompensa queda separada
-         * del depósito.
-         */
-
-        reward += perSecond;
-
-
-        /*
-         * Mostramos la recompensa pendiente.
-         */
-
-        document.getElementById("reward").textContent =
-            reward.toFixed(6);
-
-
-        /*
-         * Valores de referencia.
-         */
-
-        document.getElementById("hour").textContent =
-            (perSecond * 3600).toFixed(6) + " USDT";
-
-
-        document.getElementById("day").textContent =
-            (perSecond * 86400).toFixed(6) + " USDT";
-
-
-        document.getElementById("month").textContent =
-            (perSecond * 2592000).toFixed(6) + " USDT";
-
+    if (guardado) {
+      return {
+        ...ESTADO_INICIAL,
+        ...JSON.parse(guardado)
+      };
     }
+  } catch (error) {
+    console.warn("No se pudo leer el estado guardado.", error);
+  }
 
+  return { ...ESTADO_INICIAL };
+}
 
-    /*
-     * RETIRAR AL DEPÓSITO
-     *
-     * La recompensa pendiente se suma
-     * al depósito y después vuelve a cero.
-     */
+function guardarEstado() {
+  estado.ultimaActualizacion = Date.now();
 
-    function retirarAlDeposito() {
+  try {
+    localStorage.setItem(CLAVE, JSON.stringify(estado));
+  } catch (error) {
+    console.warn("No se pudo guardar el estado.", error);
+  }
+}
 
-        if (reward <= 0) {
-            return;
-        }
+function numero(valor) {
+  return Number(valor).toFixed(6);
+}
 
+/*
+  La tarjeta mensual muestra la ganancia estimada para 30 días:
+  depósito x 0.5 + generación mensual de tareas.
 
-        deposit = deposit + reward;
+  La velocidad del depósito permanece constante mientras el saldo
+  no cambie. Las ganancias pendientes no se capitalizan solas.
+*/
 
+function calcularGeneracionMensual() {
+  const gananciaDelDeposito = estado.deposito * 0.5;
 
-        reward = 0;
+  return gananciaDelDeposito +
+    estado.generacionMensualTareas;
+}
 
+function actualizarInterfaz() {
+  const mensual = calcularGeneracionMensual();
+  const diaria = mensual / 30;
+  const horaria = diaria / 24;
 
-        /*
-         * Actualizamos el depósito.
-         */
+  document.getElementById("deposit").textContent =
+    numero(estado.deposito);
 
-        document.getElementById("deposit").textContent =
-            deposit.toFixed(6);
+  document.getElementById("pending").textContent =
+    numero(estado.pendiente);
 
+  document.getElementById("hour").textContent =
+    numero(horaria);
 
-        document.getElementById("summaryDeposit").textContent =
-            deposit.toFixed(6);
+  document.getElementById("day").textContent =
+    numero(diaria);
 
+  document.getElementById("month").textContent =
+    numero(mensual);
+}
 
-        /*
-         * La recompensa pendiente vuelve a cero.
-         */
+function actualizarContador() {
+  const ahora = Date.now();
 
-        document.getElementById("reward").textContent =
-            "0.000000";
+  if (!estado.ultimaActualizacion) {
+    estado.ultimaActualizacion = ahora;
+  }
 
-    }
+  const segundosTranscurridos = Math.max(
+    0,
+    (ahora - estado.ultimaActualizacion) / 1000
+  );
 
+  const mensual = calcularGeneracionMensual();
+  const generacionPorSegundo = mensual / (30 * 24 * 60 * 60);
 
-    /*
-     * Actualización cada segundo.
-     */
+  estado.pendiente +=
+    generacionPorSegundo * segundosTranscurridos;
 
-    setInterval(actualizarGeneracion, 1000);
+  estado.ultimaActualizacion = ahora;
 
+  guardarEstado();
+  actualizarInterfaz();
+}
+
+function retirarAlDeposito() {
+  const minimo = 0.001;
+
+  if (estado.pendiente < minimo) {
+    mostrarAviso(
+      "Necesitas acumular al menos 0.001 NovaCoin para usar esta función."
+    );
+    return;
+  }
+
+  const cantidad = estado.pendiente;
+
+  estado.deposito += cantidad;
+  estado.pendiente = 0;
+
+  guardarEstado();
+  actualizarInterfaz();
+
+  mostrarAviso(
+    "Simulación completada: " +
+    numero(cantidad) +
+    " NovaCoin añadidos al depósito."
+  );
+}
+
+function mostrarAviso(mensaje) {
+  const caja = document.getElementById("notice");
+
+  caja.textContent = mensaje;
+  caja.style.display = "block";
+
+  clearTimeout(window.avisoTemporizador);
+
+  window.avisoTemporizador = setTimeout(() => {
+    caja.style.display = "none";
+  }, 3500);
+}
+
+function navegar(seccion) {
+  if (seccion !== "Home") {
+    mostrarAviso(
+      seccion + " se implementará en la siguiente fase del proyecto."
+    );
+    return;
+  }
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+}
+
+/*
+  Para probar el Home desde cero, se puede escribir en la consola:
+  reiniciarPrototipo()
+
+  Esto elimina los datos locales de esta simulación.
+*/
+
+function reiniciarPrototipo() {
+  estado = { ...ESTADO_INICIAL };
+  guardarEstado();
+  actualizarInterfaz();
+}
+
+actualizarInterfaz();
+
+/*
+  Actualizamos el contador cada segundo y calculamos el tiempo
+  transcurrido real para que no dependa solo del número de intervalos.
+*/
+
+setInterval(actualizarContador, 1000);
+
+document.addEventListener("visibilitychange", () => {
+  if (!document.hidden) {
+    actualizarContador();
+  }
+});
 </script>
-
 
 </body>
 </html>
