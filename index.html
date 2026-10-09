@@ -418,16 +418,16 @@ function money(value){
 return fmt(value)+" NC";
 }
 
-function hourlyGeneration(){
-return state.deposit*SECOND_RATE+state.bonusMonthly/30/24;
+function monthlyGeneration(){
+return state.deposit*1.5+state.bonusMonthly;
 }
 
 function dailyGeneration(){
-return state.deposit*DAILY_RATE+state.bonusMonthly/30;
+return monthlyGeneration()/31;
 }
 
-function monthlyGeneration(){
-return state.deposit*0.5+state.bonusMonthly;
+function hourlyGeneration(){
+return dailyGeneration()/24;
 }
 
 function render(){
