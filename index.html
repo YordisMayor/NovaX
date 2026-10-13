@@ -551,7 +551,20 @@ $("progressText").textContent=percent.toFixed(1)+"%";
 $("progressBar").style.width=percent+"%";
 $("transferBtn").disabled=state.pending<MIN_TRANSFER;
 }
+  
+function updateTimer(){
+  const seconds=Math.floor((Date.now()-state.lastTime)/1000);
+  const minutes=Math.floor(seconds/60);
+  const hours=Math.floor(minutes/60);
 
+  const displayHours=String(hours%24).padStart(2,"0");
+  const displayMinutes=String(minutes%60).padStart(2,"0");
+  const displaySeconds=String(seconds%60).padStart(2,"0");
+
+  $("timerText").textContent=
+    displayHours+":"+displayMinutes+":"+displaySeconds;
+}
+  
 function accrue(){
 const now=Date.now();
 const elapsed=Math.max(0,Math.min((now-state.lastTime)/1000,86400));
@@ -667,7 +680,9 @@ $("withdrawMessage").textContent=
 });
 
 render();
+updateTimer();
 setInterval(accrue,1000);
+setInterval(updateTimer,1000);
 })();
 </script>
 </body>
