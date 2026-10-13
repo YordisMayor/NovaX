@@ -501,7 +501,8 @@ return {
 deposit:Math.max(0,Number(parsed.deposit)||0),
 pending:Math.max(0,Number(parsed.pending)||0),
 bonusMonthly:Math.max(0,Number(parsed.bonusMonthly)||0),
-lastTime:Number(parsed.lastTime)||Date.now()
+lastTime:Number(parsed.lastTime)||Date.now(),
+timerStart:Number(parsed.timerStart)||Date.now()
 };
 }
 }catch(e){}
