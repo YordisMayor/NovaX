@@ -480,13 +480,14 @@ const SECOND_RATE=DAILY_RATE/86400;
 const $=id=>document.getElementById(id);
 
 function freshState(){
-return {
-deposit:0,
-pending:0,
-bonusMonthly:0,
-taskDone:false,
-lastTime:Date.now()
-};
+  return {
+    deposit:0,
+    pending:0,
+    bonusMonthly:0,
+    taskDone:false,
+    lastTime:Date.now(),
+    timerStart:Date.now()
+  };
 }
 
 function loadState(){
@@ -553,16 +554,22 @@ $("transferBtn").disabled=state.pending<MIN_TRANSFER;
 }
   
 function updateTimer(){
-  const seconds=Math.floor((Date.now()-state.lastTime)/1000);
-  const minutes=Math.floor(seconds/60);
-  const hours=Math.floor(minutes/60);
+  const now = Date.now();
 
-  const displayHours=String(hours%24).padStart(2,"0");
-  const displayMinutes=String(minutes%60).padStart(2,"0");
-  const displaySeconds=String(seconds%60).padStart(2,"0");
+  if (!state.timerStart) {
+    state.timerStart = now;
+    save();
+  }
 
-  $("timerText").textContent=
-    displayHours+":"+displayMinutes+":"+displaySeconds;
+  const seconds = Math.floor((now - state.timerStart) / 1000);
+  const hours = Math.floor(seconds / 3600);
+  const minutes = Math.floor((seconds % 3600) / 60);
+  const secs = seconds % 60;
+
+  $("timerText").textContent =
+    String(hours).padStart(2, "0") + ":" +
+    String(minutes).padStart(2, "0") + ":" +
+    String(secs).padStart(2, "0");
 }
   
 function accrue(){
