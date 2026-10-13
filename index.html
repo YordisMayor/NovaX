@@ -44,14 +44,48 @@ font-weight:850;
 font-size:21px
 }
 .logo{
-width:38px;
-height:38px;
-border-radius:13px;
-display:grid;
-place-items:center;
-background:linear-gradient(135deg,var(--cyan),var(--blue));
-color:#041017;
-font-weight:950
+ width:42px;
+ height:42px;
+ display:grid;
+ place-items:center;
+ flex-shrink:0;
+ background:transparent;
+}
+
+.logo svg{
+ display:block;
+ filter:drop-shadow(0 0 8px #32e6d033);
+}
+
+.brand-copy{
+ display:flex;
+ flex-direction:column;
+ gap:2px;
+ min-width:0;
+}
+
+.brand-name{
+ font-size:23px;
+ font-weight:850;
+ letter-spacing:-.5px;
+ line-height:1.1;
+}
+
+.brand-name span{
+ color:var(--cyan);
+}
+
+.brand-tagline{
+ font-size:8px;
+ letter-spacing:1.1px;
+ color:var(--muted);
+ white-space:nowrap;
+}
+
+.profile-space{
+ width:42px;
+ height:42px;
+ flex-shrink:0;
 }
 .pill{
 font-size:10px;
@@ -229,11 +263,30 @@ outline:none
 <body>
 <div class="app">
 <header class="top">
-<div class="brand">
-<div class="logo">N</div>
-<div>NOVA X</div>
-</div>
-<div class="pill">● SISTEMA DE PRUEBA</div>
+  <div class="brand">
+    <div class="logo" aria-label="Nova X">
+      <svg width="42" height="42" viewBox="0 0 48 48"
+           fill="none" aria-hidden="true">
+        <path d="M8 37V11L17 17L31 34V9L40 14V39L31 34L17 17V39Z"
+              fill="url(#novaGradient)"/>
+        <defs>
+          <linearGradient id="novaGradient"
+              x1="8" y1="11" x2="40" y2="39"
+              gradientUnits="userSpaceOnUse">
+            <stop stop-color="#32e6d0"/>
+            <stop offset="1" stop-color="#4ab8ff"/>
+          </linearGradient>
+        </defs>
+      </svg>
+    </div>
+
+    <div class="brand-copy">
+      <div class="brand-name">Nova<span>X</span></div>
+      <div class="brand-tagline">TU PANEL DIGITAL</div>
+    </div>
+  </div>
+
+  <div class="profile-space" aria-hidden="true"></div>
 </header>
 
 <section id="home" class="section active">
