@@ -600,10 +600,13 @@ window.scrollTo({top:0,behavior:"smooth"});
 }
 
 document.querySelectorAll(".nav button").forEach(button=>{
-button.addEventListener("click",()=>{
-switchSection(button.dataset.target);
+  button.addEventListener("click",()=>{
+    switchSection(button.dataset.target);
+  });
 });
+
 $("transferBtn").addEventListener("click",()=>{
+
   accrue();
 
   if(state.pending<MIN_TRANSFER){
