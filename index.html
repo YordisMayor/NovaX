@@ -557,6 +557,11 @@ $("transferBtn").disabled=state.pending<MIN_TRANSFER;
 function updateTimer(){
   const now = Date.now();
 
+  if (hourlyGeneration() <= 0) {
+    $("timerText").textContent = "00:00:00";
+    return;
+  }
+
   if (!state.timerStart) {
     state.timerStart = now;
     save();
@@ -598,18 +603,24 @@ document.querySelectorAll(".nav button").forEach(button=>{
 button.addEventListener("click",()=>{
 switchSection(button.dataset.target);
 });
-});$("transferBtn").addEventListener("click",()=>{
-accrue();
-if(state.pending<MIN_TRANSFER){
-alert("Necesitas al menos 0.001 NC pendientes para transferir.");
-return;
-}
-state.deposit+=state.pending;
-state.pending=0;
-state.lastTime=Date.now();
-save();
-render();
-alert("Transferencia interna de prueba completada.");
+$("transferBtn").addEventListener("click",()=>{
+  accrue();
+
+  if(state.pending<MIN_TRANSFER){
+    alert("Necesitas al menos 0.001 NC pendientes para transferir.");
+    return;
+  }
+
+  state.deposit+=state.pending;
+  state.pending=0;
+  state.lastTime=Date.now();
+  state.timerStart=Date.now();
+
+  save();
+  render();
+  updateTimer();
+
+  alert("Transferencia interna de prueba completada.");
 });
 
 $("addTestBtn").addEventListener("click",()=>{
