@@ -570,12 +570,90 @@ outline:none
 <div class="notice">
 Esta versión guarda el estado en el navegador del dispositivo. No uses estos datos como saldo real.
 </div>
-</section><nav class="nav" aria-label="Navegación principal">
-<button data-target="tasks"><span>✓</span>Tareas</button>
-<button data-target="bank"><span>▤</span>Banco</button>
-<button class="home active" data-target="home"><span>⌂</span>Home</button>
-<button data-target="profile"><span>◉</span>Perfil</button>
-<button data-target="friends"><span>♧</span>Amigos</button>
+<nav class="nav" aria-label="Navegación principal">
+
+  <!-- Tareas -->
+  <button data-target="tasks" aria-label="Tareas">
+    <span>
+      <svg viewBox="0 0 24 24" width="24" height="24"
+           fill="none" stroke="currentColor" stroke-width="1.8"
+           stroke-linecap="round" stroke-linejoin="round"
+           aria-hidden="true">
+        <rect x="5" y="4" width="14" height="17" rx="2"/>
+        <path d="M9 4.5h6"/>
+        <path d="m8 10 1.5 1.5L12 9"/>
+        <path d="M14 10h2"/>
+        <path d="m8 15 1.5 1.5L12 14"/>
+        <path d="M14 15h2"/>
+      </svg>
+    </span>
+    Tareas
+  </button>
+
+  <!-- Banco -->
+  <button data-target="bank" aria-label="Banco">
+    <span>
+      <svg viewBox="0 0 24 24" width="24" height="24"
+           fill="none" stroke="currentColor" stroke-width="1.8"
+           stroke-linecap="round" stroke-linejoin="round"
+           aria-hidden="true">
+        <path d="M3 9h18L12 4 3 9Z"/>
+        <path d="M5 10v8"/>
+        <path d="M9.5 10v8"/>
+        <path d="M14.5 10v8"/>
+        <path d="M19 10v8"/>
+        <path d="M3 19h18"/>
+        <path d="M2 22h20"/>
+      </svg>
+    </span>
+    Banco
+  </button>
+
+  <!-- Home -->
+  <button class="home active" data-target="home" aria-label="Home">
+    <span>
+      <svg viewBox="0 0 24 24" width="27" height="27"
+           fill="none" stroke="currentColor" stroke-width="1.8"
+           stroke-linecap="round" stroke-linejoin="round"
+           aria-hidden="true">
+        <path d="m3 11 9-7 9 7"/>
+        <path d="M5.5 10v10h13V10"/>
+        <path d="M9.5 20v-6h5v6"/>
+      </svg>
+    </span>
+    Home
+  </button>
+
+  <!-- Perfil -->
+  <button data-target="profile" aria-label="Perfil">
+    <span>
+      <svg viewBox="0 0 24 24" width="24" height="24"
+           fill="none" stroke="currentColor" stroke-width="1.8"
+           stroke-linecap="round" stroke-linejoin="round"
+           aria-hidden="true">
+        <circle cx="12" cy="8" r="3.5"/>
+        <path d="M5 20c.5-4 3-6 7-6s6.5 2 7 6"/>
+      </svg>
+    </span>
+    Perfil
+  </button>
+
+  <!-- Amigos -->
+  <button data-target="friends" aria-label="Amigos">
+    <span>
+      <svg viewBox="0 0 24 24" width="24" height="24"
+           fill="none" stroke="currentColor" stroke-width="1.8"
+           stroke-linecap="round" stroke-linejoin="round"
+           aria-hidden="true">
+        <circle cx="9" cy="8" r="3"/>
+        <circle cx="17" cy="9" r="2.5"/>
+        <path d="M3 20c.3-3.5 2.3-5.5 6-5.5s5.7 2 6 5.5"/>
+        <path d="M15 15c3.5-.3 5.5 1.5 6 4.5"/>
+      </svg>
+    </span>
+    Amigos
+  </button>
+
 </nav>
 </div>
 
