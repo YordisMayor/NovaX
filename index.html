@@ -517,14 +517,86 @@ outline:none
 
 </section>
 <section id="friends" class="section">
-<h1>Amigos</h1>
-<p class="sub">Invita a otras personas a conocer Nova X.</p>
-<div class="card">
-<div class="bubble">♧</div>
-<h3>Tu comunidad</h3>
-<p class="sub">El sistema de referidos real todavía no está conectado.</p>
-<button class="btn secondary" id="shareBtn">Compartir Nova X</button>
-</div>
+
+  <div style="margin-bottom:22px">
+    <div style="display:flex;align-items:center;gap:9px;margin-bottom:9px">
+      <span style="width:7px;height:7px;border-radius:50%;background:#32e6d0;box-shadow:0 0 12px #32e6d0"></span>
+      <span style="font-size:10px;letter-spacing:2px;color:#32e6d0;font-weight:800">NOVA X · COMUNIDAD</span>
+    </div>
+
+    <h1 style="font-size:27px;letter-spacing:-.7px;margin-bottom:7px">Amigos</h1>
+    <p class="sub">Invita a tus amigos a Nova X y crezcan juntos.</p>
+  </div>
+
+  <div class="card" style="position:relative;overflow:hidden;border:1px solid #20505a;background:linear-gradient(135deg,#103039,#0b1925 75%);padding:19px;border-radius:22px">
+
+    <div style="position:absolute;right:-30px;top:-35px;width:120px;height:120px;border-radius:50%;background:#32e6d0;opacity:.07;filter:blur(4px)"></div>
+
+    <div style="position:relative;display:flex;align-items:center;gap:12px;margin-bottom:16px">
+      <div class="bubble" style="width:52px;height:52px;border-radius:17px">
+        <svg width="29" height="29" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="9" cy="8" r="3"/>
+          <circle cx="17" cy="9" r="2.5"/>
+          <path d="M3 20c.3-3.5 2.3-5.5 6-5.5s5.7 2 6 5.5"/>
+          <path d="M15 15c3.5-.3 5.5 1.5 6 4.5"/>
+        </svg>
+      </div>
+
+      <div>
+        <h3 style="font-size:19px;margin:0 0 5px">Invita y crece</h3>
+        <p class="sub">Comparte Nova X con tus amigos.</p>
+      </div>
+    </div>
+
+    <p class="sub" style="font-size:12px;line-height:1.7;margin-bottom:18px">
+      Invita a otras personas a conocer Nova X. Estamos preparando el sistema de invitaciones y recompensas.
+    </p>
+
+    <div style="padding:14px;border:1px solid #20505a;background:#071720;border-radius:15px">
+      <div class="label" style="font-size:10px;letter-spacing:1.2px;margin-bottom:10px">TU ENLACE DE INVITACIÓN</div>
+
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:10px">
+        <strong style="font-size:16px;letter-spacing:1px;color:#32e6d0">NOVAX-••••</strong>
+        <span style="color:#32e6d0;font-size:20px">↗</span>
+      </div>
+    </div>
+
+    <button class="btn" id="shareBtn" style="min-height:48px">
+      Compartir enlace de Nova X
+    </button>
+
+    <p class="mini" style="line-height:1.6">
+      Código ilustrativo de prueba. Todavía no identifica invitados ni activa recompensas reales.
+    </p>
+  </div>
+
+  <div class="stats" style="grid-template-columns:repeat(2,minmax(0,1fr));gap:12px">
+
+    <div class="stat" style="padding:17px 14px;border:1px solid #07506b;border-radius:19px;background:linear-gradient(160deg,#071c2b,#06121d)">
+      <div style="width:42px;height:42px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(145deg,#087cff,#0644b8);color:#d8f5ff;font-size:22px;margin-bottom:14px">
+        ♧
+      </div>
+      <small style="font-size:11px">Invitados</small>
+      <strong style="font-size:23px;color:#32e6d0;margin-top:7px">0</strong>
+      <div style="font-size:10px;color:#64869b;margin-top:5px">Modo de prueba</div>
+    </div>
+
+    <div class="stat" style="padding:17px 14px;border:1px solid #07506b;border-radius:19px;background:linear-gradient(160deg,#071c2b,#06121d)">
+      <div style="width:42px;height:42px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(145deg,#00bd82,#00875e);color:#c4ffdf;font-size:22px;margin-bottom:14px">
+        +
+      </div>
+      <small style="font-size:11px">Recompensa mensual</small>
+      <strong style="font-size:23px;color:#32e6d0;margin-top:7px">0 NC</strong>
+      <div style="font-size:10px;color:#64869b;margin-top:5px">Sin recompensas activas</div>
+    </div>
+
+  </div>
+
+  <div class="notice" style="margin-top:17px">
+    <strong>Modo de prueba.</strong>
+    Las invitaciones todavía no se registran y las recompensas no están conectadas. Estas cifras son ilustrativas.
+  </div>
+
 </section>
 
 <section id="bank" class="section">
