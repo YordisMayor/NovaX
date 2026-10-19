@@ -642,19 +642,161 @@ outline:none
 </div>
 </section>
 
+<!-- PERFIL NOVA X -->
 <section id="profile" class="section">
-<h1>Perfil</h1>
-<p class="sub">Información local de esta simulación.</p>
-<div class="card">
-<div class="label">CAPACIDAD EXTRA DE GENERACIÓN</div>
-<div class="balance" id="bonusDisplay">0 NC/mes</div>
-<p class="sub">Esta cantidad es solo una variable de prueba guardada en este dispositivo.</p>
-</div>
-<div class="notice">
-Esta versión guarda el estado en el navegador del dispositivo. No uses estos datos como saldo real.
-</div>
- </section>
- </section>
+
+  <div style="margin-bottom:22px">
+    <div class="label" style="letter-spacing:3px;color:var(--cyan)">
+      MI PERFIL
+    </div>
+    <h1 style="margin:8px 0">Perfil</h1>
+    <p class="sub">Tu cuenta y actividad en Nova X.</p>
+  </div>
+
+  <!-- DATOS DE CUENTA -->
+  <div class="card" style="padding:20px;margin-bottom:16px">
+    <div style="display:flex;align-items:center;gap:14px">
+      <div style="
+        width:62px;height:62px;flex-shrink:0;
+        border-radius:20px;
+        display:flex;align-items:center;justify-content:center;
+        font-size:27px;font-weight:800;color:var(--cyan);
+        background:linear-gradient(135deg,#123b4b,#101d30);
+        border:1px solid #245267">
+        N
+      </div>
+
+      <div style="min-width:0;flex:1">
+        <div style="font-size:18px;font-weight:800;color:#fff">
+          Mi cuenta
+        </div>
+        <div class="sub" style="margin-top:5px">
+          Cuenta local de prueba
+        </div>
+        <div style="font-size:12px;color:var(--cyan);margin-top:7px">
+          ID: 000000
+        </div>
+      </div>
+
+      <button type="button"
+        onclick="navigator.clipboard.writeText('000000').then(()=>alert('ID copiado')).catch(()=>alert('No se pudo copiar el ID'))"
+        style="
+          border:1px solid #245267;
+          background:#102635;color:var(--cyan);
+          padding:10px 12px;border-radius:12px;
+          font-weight:700">
+        Copiar ID
+      </button>
+    </div>
+  </div>
+
+  <!-- RESUMEN DE ACTIVIDAD -->
+  <div style="
+    display:grid;grid-template-columns:1fr 1fr;
+    gap:12px;margin-bottom:16px">
+
+    <div class="card" style="padding:17px">
+      <div class="label">TOTAL RECARGADO</div>
+      <div style="font-size:23px;font-weight:800;margin-top:10px">
+        0 <span style="font-size:13px;color:var(--cyan)">NC</span>
+      </div>
+      <div class="sub" style="margin-top:6px">Acumulado</div>
+    </div>
+
+    <div class="card" style="padding:17px">
+      <div class="label">TOTAL RETIRADO</div>
+      <div style="font-size:23px;font-weight:800;margin-top:10px">
+        0 <span style="font-size:13px;color:var(--cyan)">NC</span>
+      </div>
+      <div class="sub" style="margin-top:6px">Acumulado</div>
+    </div>
+
+  </div>
+
+  <!-- INVITACIONES -->
+  <div class="card" style="padding:19px;margin-bottom:16px">
+
+    <div class="label">INVITACIONES</div>
+
+    <div style="margin-top:16px">
+      <div class="sub">Invitado por</div>
+      <div style="font-weight:700;margin-top:5px">
+        Sin invitación registrada
+      </div>
+    </div>
+
+    <div style="
+      height:1px;background:var(--line);
+      margin:17px 0">
+    </div>
+
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:10px">
+      <div>
+        <div class="sub">Amigos invitados</div>
+        <div style="font-size:24px;font-weight:800;margin-top:5px">0</div>
+      </div>
+
+      <button type="button" data-target="friends"
+        style="
+          border:1px solid #245267;
+          background:#102635;color:var(--cyan);
+          padding:12px 14px;border-radius:13px;
+          font-weight:700">
+        Ver mis amigos
+      </button>
+    </div>
+
+  </div>
+
+  <!-- ACTIVIDAD RECIENTE -->
+  <div class="card" style="padding:19px;margin-bottom:16px">
+
+    <div class="label">ACTIVIDAD RECIENTE</div>
+
+    <div style="text-align:center;padding:25px 8px 15px">
+      <div style="font-size:30px;color:var(--cyan);margin-bottom:10px">
+        ◷
+      </div>
+      <div style="font-weight:700">Todavía no hay movimientos</div>
+      <p class="sub" style="margin-top:7px">
+        Aquí aparecerá tu actividad cuando conectemos el historial.
+      </p>
+    </div>
+
+  </div>
+
+  <!-- SOPORTE -->
+  <div class="card" style="
+    padding:19px;margin-bottom:18px;
+    border-color:#20505a;
+    background:linear-gradient(135deg,#102b35,#0b1722)">
+
+    <div style="font-size:17px;font-weight:800">
+      ¿Necesitas ayuda?
+    </div>
+
+    <p class="sub" style="margin:9px 0 15px">
+      Próximamente podrás contactar con el equipo de soporte de Nova X.
+    </p>
+
+    <button type="button" disabled
+      style="
+        width:100%;padding:13px;
+        border:1px solid #245267;
+        border-radius:13px;
+        background:#102635;color:#7e9ba9;
+        font-weight:700;opacity:.8">
+      Grupo de soporte · Próximamente
+    </button>
+
+  </div>
+
+  <!-- Conserva la conexión con el JavaScript actual -->
+  <div style="display:none" aria-hidden="true">
+    <span id="bonusDisplay">0 NC/mes</span>
+  </div>
+
+</section>
 <nav class="nav" aria-label="Navegación principal">
 
   <!-- Tareas -->
