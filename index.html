@@ -736,14 +736,15 @@ outline:none
         <div style="font-size:24px;font-weight:800;margin-top:5px">0</div>
       </div>
 
-      <button type="button" data-target="friends"
-        style="
-          border:1px solid #245267;
-          background:#102635;color:var(--cyan);
-          padding:12px 14px;border-radius:13px;
-          font-weight:700">
-        Ver mis amigos
-      </button>
+      <button type="button"
+  onclick="document.querySelector('[data-target=&quot;friends&quot;].nav')?.click()"
+  style="
+    border:1px solid #245267;
+    background:#102635;color:var(--cyan);
+    padding:12px 14px;border-radius:13px;
+    font-weight:700">
+  Ver mis amigos
+</button>
     </div>
 
   </div>
