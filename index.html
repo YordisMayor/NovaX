@@ -1022,6 +1022,12 @@ document.querySelectorAll(".nav button").forEach(button=>{
   });
 });
 
+ // Botón "Ver mis amigos" dentro del Perfil
+document.querySelector('#profile button[data-target="friends"]')
+  .addEventListener("click",()=>{
+    switchSection("friends");
+  });
+ 
 $("transferBtn").addEventListener("click",()=>{
 
   accrue();
