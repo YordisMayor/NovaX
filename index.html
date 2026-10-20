@@ -1221,17 +1221,38 @@ return dailyGeneration()/24;
 }
 
 function render(){
-$("deposit").textContent=fmt(state.deposit);
-$("pending").textContent=fmt(state.pending);
-$("hourStat").textContent=money(hourlyGeneration());
-$("dayStat").textContent=money(dailyGeneration());
-$("monthStat").textContent=money(monthlyGeneration());
-$("bonusDisplay").textContent=fmt(state.bonusMonthly)+" NC/mes";
+  $("deposit").textContent=fmt(state.deposit);
+  $("pending").textContent=fmt(state.pending);
 
-const percent=Math.min(100,state.pending/MIN_TRANSFER*100);
-$("progressText").textContent=percent.toFixed(1)+"%";
-$("progressBar").style.width=percent+"%";
-$("transferBtn").disabled=state.pending<MIN_TRANSFER;
+  $("hourStat").textContent=money(hourlyGeneration());
+  $("dayStat").textContent=money(dailyGeneration());
+  $("monthStat").textContent=money(monthlyGeneration());
+
+  $("bonusDisplay").textContent=fmt(state.bonusMonthly)+" NC/mes";
+  $("bonusDisplayTasks").textContent="+"+fmt(state.bonusMonthly)+" NC/mes";
+
+  $("adsCount").textContent=state.adsCount+"/5";
+  $("adsProgressBar").style.width=(state.adsCount/5*100)+"%";
+
+  const percent=Math.min(100,state.pending/MIN_TRANSFER*100);
+  $("progressText").textContent=percent.toFixed(1)+"%";
+  $("progressBar").style.width=percent+"%";
+  $("transferBtn").disabled=state.pending<MIN_TRANSFER;
+
+  $("taskBtn").disabled=state.taskDone;
+  $("taskBtn").textContent=state.taskDone
+    ? "Tarea completada"
+    : "Reclamar recompensa";
+
+  $("partnerTasksBtn").disabled=state.partnerTaskDone;
+  $("partnerTasksBtn").textContent=state.partnerTaskDone
+    ? "Tarea completada"
+    : "Ver tareas";
+
+  $("watchAdBtn").disabled=state.adsCount>=5;
+  $("watchAdBtn").textContent=state.adsCount>=5
+    ? "Límite diario alcanzado"
+    : "Ver anuncio";
 }
   
 function updateTimer(){
