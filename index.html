@@ -1138,29 +1138,55 @@ function freshState(){
     deposit:0,
     pending:0,
     bonusMonthly:0,
+
     taskDone:false,
+    partnerTaskDone:false,
+
+    adsCount:0,
+    adsDate:new Date().toLocaleDateString("en-CA"),
+
     lastTime:Date.now(),
     timerStart:Date.now()
   };
 }
-
 function loadState(){
-try{
-const saved=localStorage.getItem(KEY);
-if(saved){
-const parsed=JSON.parse(saved);
-return {
-...freshState(),
-...parsed,
-deposit:Math.max(0,Number(parsed.deposit)||0),
-pending:Math.max(0,Number(parsed.pending)||0),
-bonusMonthly:Math.max(0,Number(parsed.bonusMonthly)||0),
-lastTime:Number(parsed.lastTime)||Date.now(),
-timerStart:Number(parsed.timerStart)||Date.now()
-};
-}
-}catch(e){}
-return freshState();
+  try{
+    const saved=localStorage.getItem(KEY);
+
+    if(saved){
+      const parsed=JSON.parse(saved);
+      const today=new Date().toLocaleDateString("en-CA");
+
+      const result={
+        ...freshState(),
+        ...parsed,
+
+        deposit:Math.max(0,Number(parsed.deposit)||0),
+        pending:Math.max(0,Number(parsed.pending)||0),
+        bonusMonthly:Math.max(0,Number(parsed.bonusMonthly)||0),
+
+        taskDone:parsed.taskDone===true,
+        partnerTaskDone:parsed.partnerTaskDone===true,
+
+        adsCount:Math.max(0,Math.min(5,Number(parsed.adsCount)||0)),
+        adsDate:typeof parsed.adsDate==="string"
+          ? parsed.adsDate
+          : today,
+
+        lastTime:Number(parsed.lastTime)||Date.now(),
+        timerStart:Number(parsed.timerStart)||Date.now()
+      };
+
+      if(result.adsDate!==today){
+        result.adsCount=0;
+        result.adsDate=today;
+      }
+
+      return result;
+    }
+  }catch(e){}
+
+  return freshState();
 }
 
 let state=loadState();
