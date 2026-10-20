@@ -736,7 +736,7 @@ outline:none
         <div style="font-size:24px;font-weight:800;margin-top:5px">0</div>
       </div>
 
-      <button type="button"
+      <button type="button" id="viewFriendsBtn"
   onclick="document.querySelector('.nav [data-target=&quot;friends&quot;]').click()"
   style="
     border:1px solid #245267;
@@ -1023,10 +1023,9 @@ document.querySelectorAll(".nav button").forEach(button=>{
 });
 
  // Botón "Ver mis amigos" dentro del Perfil
-document.querySelector('#profile button[data-target="friends"]')
-  .addEventListener("click",()=>{
-    switchSection("friends");
-  });
+$("viewFriendsBtn").addEventListener("click",()=>{
+  switchSection("friends");
+});
  
 $("transferBtn").addEventListener("click",()=>{
 
