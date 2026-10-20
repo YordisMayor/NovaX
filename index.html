@@ -1374,6 +1374,36 @@ $("taskBtn").textContent="Tarea completada";
 $("taskMessage").textContent="Esta tarea de prueba ya se completó.";
 }
 
+ // Tarea de socios
+$("partnerTasksBtn").addEventListener("click",function(){
+  if(state.partnerTaskDone) return;
+
+  state.partnerTaskDone=true;
+  state.bonusMonthly+=1;
+
+  save();
+  render();
+
+  $("partnerTaskMessage").textContent=
+    "¡Tarea completada! +1 NC/mes";
+});
+
+// Tarea de anuncios
+$("watchAdBtn").addEventListener("click",function(){
+  if(state.adsCount>=5) return;
+
+  state.adsCount++;
+
+  state.bonusMonthly=
+    Math.round((state.bonusMonthly+0.01)*100)/100;
+
+  save();
+  render();
+
+  $("adTaskMessage").textContent=
+    "Anuncio de prueba completado. +0.01 NC/mes";
+});
+ 
 $("shareBtn").addEventListener("click",async()=>{
 const shareData={
 title:"Nova X",
